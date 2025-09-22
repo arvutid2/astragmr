@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="et">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1v1 Arena MVP</title>
+    <link rel="stylesheet" href="/src/styles/app.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="side">
+        <div class="brand" style="display:flex;align-items:center;gap:8px;">
+          <div style="width:12px;height:12px;border-radius:3px;background:linear-gradient(180deg,#d4af37,#b8961a);box-shadow:0 0 18px rgba(212,175,55,.35)"></div>
+          1v1 Arena
+          <span class="badge" id="me-badge">—</span>
+        </div>
+        <div class="nav navsec">
+          <h4>Menüü</h4>
+          <a id="nav-profile" class="active"><span>Profile</span><span class="spacer"></span><span class="badge" id="duels-mini">0/0</span></a>
+          <a id="nav-lobby"><span>Lobby</span></a>
+          <a id="nav-friends"><span>Friends</span></a>
+          <a id="nav-chat"><span>Chat</span></a>
+          <a id="nav-leaderboard"><span>Leaderboard</span></a>
+        </div>
+        <div class="hr"></div>
+        <div class="small">Reegel: võitja 90%, platvorm 10%. Lobby kustutatakse pärast matši.</div>
+      </div>
+
+      <div class="top">
+        <div class="brand">Dashboard</div>
+        <span class="spacer"></span>
+        <div class="pill">
+          <label for="chain">Chain</label>
+          <select id="chain">
+            <option value="BNB">BNB</option>
+            <option value="PI">PI</option>
+          </select>
+        </div>
+        <div class="pill" id="wallet-pill">Wallet: <b id="wallet-name">—</b></div>
+        <button class="btn" id="logout" title="Logi välja">Log out</button>
+      </div>
+
+      <div class="main">
+        <!-- PROFILE -->
+        <section id="view-profile" style="display:block">
+          <div class="card">
+            <h3>Profiil</h3>
+            <div class="row"><div>Kasutaja:</div><div id="me-name" class="mono"></div></div>
+            <div class="row"><div>Duels played:</div><div id="duels-played" class="mono">0</div></div>
+            <div class="row"><div>Duels won:</div><div id="duels-won" class="mono">0</div></div>
+            <div class="row"><div>Balance:</div><div id="me-balance" class="mono">0</div></div>
+          </div>
+        </section>
+
+        <!-- LOBBY -->
+        <section id="view-lobby" style="display:none">
+          <div class="card">
+            <h3>Create Lobby</h3>
+            <div class="grid cols-3">
+              <div class="grid">
+                <label>Mäng</label>
+                <select id="game">
+                  <option value="rps">Rock–Paper–Scissors</option>
+                </select>
+              </div>
+              <div class="grid">
+                <label>Stake (samm 5, algab 1)</label>
+                <input id="stake" type="number" min="1" step="5" value="1" />
+              </div>
+              <div class="grid">
+                <label>&nbsp;</label>
+                <button class="btn primary" id="create">Create</button>
+              </div>
+            </div>
+            <div class="small" id="createHint"></div>
+          </div>
+
+          <div class="card">
+            <h3>Open Lobbies</h3>
+            <div class="lobbies" id="lobbyList"></div>
+          </div>
+
+          <div class="card">
+            <h3>Practice vs AI</h3>
+            <div class="row">
+              <button class="btn" id="practiceStart">Start game</button>
+              <span class="small">Harjutus. Ei loo lobby’t.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- CHAT -->
+        <section id="view-chat" style="display:none">
+          <div class="card">
+            <h3>Chat</h3>
+            <div class="chatlog" id="chatLog"></div>
+            <div class="row" style="margin-top:8px">
+              <input id="chatInput" type="text" placeholder="Saada sõnum üldkanalisse" style="flex:1" />
+              <button class="btn" id="chatSend">Send</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- FRIENDS -->
+        <section id="view-friends" style="display:none">
+          <div class="card"><h3>Friends</h3><div class="small">Tuleb järgmises sammus.</div></div>
+        </section>
+
+        <!-- LEADERBOARD -->
+        <section id="view-leaderboard" style="display:none">
+          <div class="card"><h3>Leaderboard</h3><div class="small">Tuleb hiljem.</div></div>
+        </section>
+      </div>
+    </div>
+
+    <div class="cover" id="authCover">
+      <div class="card auth">
+        <h3>Mock login</h3>
+        <div class="grid cols-1">
+          <label for="uname">Username</label>
+          <input id="uname" type="text" placeholder="nt. targo" />
+          <button id="login" class="btn primary">Log in</button>
+        </div>
+        <div class="small" style="margin-top:8px">Ava teine vahekaart ja logi teise nimega sisse, et testida liitumist ja chat’i.</div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast" style="display:none"></div>
+
+    <script type="module" src="/src/app.js"></script>
+  </body>
+</html>
